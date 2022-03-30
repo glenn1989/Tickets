@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Tickets.ViewModel.ClubVM>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ticketshop Pro League</h1>
+    <p>Welkom bij de officiële ticket hub van de Jupiler Pro League.</p>
+
+    <ul class="list-group">
+        @foreach(var item in Model)
+    {
+        <li class="list-group-item">
+            @Html.ActionLink(item.Clubnaam, "Clubpage", new { id=item.Stamnummer} )        
+        </li>
+    }
+    </ul>
+
+    
+
+</div>
