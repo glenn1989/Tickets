@@ -8,6 +8,7 @@
     <h1>Wedstrijden</h1>
 
     <form asp-action="Index" asp-controller="Wedstrijd">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="mb-3">
                 <label asp-for="Thuisploeg"></label>
                 <select asp-for="Thuisploeg" class="form-select" asp-items="@Model.Club">
@@ -30,7 +31,7 @@
             <div class="card-body">
                 <p>@item.Datum.Value.ToString("dd MMMM yyyy")</p>
                 <p>@item.Uur</p>
-                <a class="btn-primary btn" asp-action="Ticket" asp-controller="Ticket" asp-route-id="@item.ThuisploegId">Koop tickets</a>
+                <a class="btn-primary btn" asp-action="Ticketselect" asp-controller="Ticket" asp-route-id="@item.ThuisploegId">Koop tickets</a>
              </div>
          </div>
     }
@@ -42,4 +43,6 @@
 
 </div>
 
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

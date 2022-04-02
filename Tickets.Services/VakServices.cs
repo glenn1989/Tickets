@@ -1,23 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tickets.Domain.Data;
 using Tickets.Domain.Entities;
 using Tickets.Repository.Interfaces;
+using Tickets.Services.Interfaces;
 
-namespace Tickets.Repository
+namespace Tickets.Services
 {
-    public class VakDAO : IDAO<Vak>
+    public class VakServices : Iservices<Vak>
     {
-
-        private readonly TicketsDbContext _ticketsDb;
-
-        public VakDAO()
+        private IDAO<Vak> _VakDAO;
+        public VakServices(IDAO<Vak> vakDAO)
         {
-            _ticketsDb = new TicketsDbContext();
+            _VakDAO = vakDAO;
         }
         public Task<Vak> FindById(int id)
         {
@@ -31,14 +28,7 @@ namespace Tickets.Repository
 
         public async Task<IEnumerable<Vak>> GetAll()
         {
-            try
-            {
-                return await _ticketsDb.Vaks.ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("error DAO");
-            }
+            return await _VakDAO.GetAll();
         }
     }
 }

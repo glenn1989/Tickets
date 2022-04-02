@@ -28,6 +28,9 @@ builder.Services.AddTransient<IDAO<Club>, ClubsDAO>();
 builder.Services.AddTransient<Iservices<Club>, ClubServices>();
 builder.Services.AddTransient<IDAO<Wedstrijd>, WedstrijdDAO>();
 
+builder.Services.AddTransient<Iservices<Vak>, VakServices>();
+builder.Services.AddTransient<IDAO<Vak>, VakDAO>();
+
 builder.Services.AddTransient<Iservices<VakStadion>, VakStadionServices>();
 builder.Services.AddTransient<IDAO<VakStadion>, VakStadionDAO>();
 
