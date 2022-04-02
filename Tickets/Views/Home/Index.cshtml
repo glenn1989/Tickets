@@ -12,7 +12,7 @@
         @foreach(var item in Model)
     {
         <li class="list-group-item">
-            @Html.ActionLink(item.Clubnaam, "Clubpage", new { id=item.Stamnummer} )        
+            <a asp-controller="Club" asp-action="Clubpage" asp-route-id="@item.Stamnummer">@Html.DisplayFor(modelItem => item.Clubnaam)</a>       
         </li>
     }
     </ul>

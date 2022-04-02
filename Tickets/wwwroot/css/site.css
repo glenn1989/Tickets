@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom:110px;
   width:100%;
 }
 
@@ -31,4 +31,11 @@ footer{
     height:50px;
 }
 
+.button{
+    text-align:center;
+    margin-top:5px;
+}
 
+.contentbox{
+    margin:5px 0 5px 0;
+}

@@ -53,7 +53,17 @@ namespace Tickets.Repository
 
         public async Task<Wedstrijd> FindById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _ticketsDb.Wedstrijds
+                    .Include(a => a.Thuisploeg)
+                    .Include(a => a.Uitploeg)
+                    .Where(b => b.WedstrijdId == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error DAO");
+            }
         }
     }
 }

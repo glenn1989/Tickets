@@ -13,7 +13,7 @@ namespace Tickets.Domain.Entities
         public int VakId { get; set; }
         public int Capaciteit { get; set; }
         public int StadionId { get; set; }
-        public int Prijs { get; set; }
+        public double Prijs { get; set; }
 
         public virtual Stadion Stadion { get; set; } = null!;
         public virtual Vak Vak { get; set; } = null!;

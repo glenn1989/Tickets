@@ -30,7 +30,7 @@ namespace Tickets.Services
 
         public async Task<Wedstrijd> FindById(int id)
         {
-            throw new NotImplementedException();
+            return await _wedstrijdDAO.FindById(id);
         }
 
         

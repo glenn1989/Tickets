@@ -1,0 +1,45 @@
+﻿@model Tickets.ViewModel.WedstrijdVM;
+
+@{
+    ViewData["Title"] = "Wedstrijden";
+}
+<div class="container">
+
+    <h1>Wedstrijden</h1>
+
+    <form asp-action="Index" asp-controller="Wedstrijd">
+        <div class="mb-3">
+                <label asp-for="Thuisploeg"></label>
+                <select asp-for="Thuisploeg" class="form-select" asp-items="@Model.Club">
+                    <option disabled-selected></option>
+                </select>
+                <span asp-validation-for="@Model.Thuisploeg" class="text-danger"></span>
+        </div>
+        <div class="button">
+                <input type="submit" value="Team selecteren" class="btn-primary" />
+        </div>
+    </form>
+     <div class="container-fluid">
+
+@if(@Model.WedstrijdenList.Count > 0){
+
+    @foreach(var item in Model.WedstrijdenList)
+    {
+        <div class="card text-center contentbox">
+            <h5 class="card-header">@item.Thuisploeg.Clubnaam - @item.Uitploeg.Clubnaam</h5>
+            <div class="card-body">
+                <p>@item.Datum.Value.ToString("dd MMMM yyyy")</p>
+                <p>@item.Uur</p>
+                <a class="btn-primary btn" asp-action="Ticket" asp-controller="Ticket" asp-route-id="@item.ThuisploegId">Koop tickets</a>
+             </div>
+         </div>
+    }
+    
+}
+
+    </div>
+    
+
+</div>
+
+

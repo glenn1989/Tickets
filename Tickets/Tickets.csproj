@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Club\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
