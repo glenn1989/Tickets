@@ -8,20 +8,21 @@
     <h1>Wedstrijden</h1>
 
     <form asp-action="Index" asp-controller="Wedstrijd">
-        <div asp-validation-summary="All" class="text-danger"></div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3">
                 <label asp-for="Thuisploeg"></label>
                 <select asp-for="Thuisploeg" class="form-select" asp-items="@Model.Club">
                     <option disabled-selected></option>
                 </select>
-                <span asp-validation-for="@Model.Thuisploeg" class="text-danger"></span>
+                <span asp-validation-for="Thuisploeg" class="text-danger"></span>
         </div>
         <div class="button">
                 <input type="submit" value="Team selecteren" class="btn-primary" />
         </div>
     </form>
-     <div class="container-fluid">
 
+
+     <div class="container-fluid">
 @if(@Model.WedstrijdenList.Count > 0){
 
     @foreach(var item in Model.WedstrijdenList)
@@ -31,16 +32,13 @@
             <div class="card-body">
                 <p>@item.Datum.Value.ToString("dd MMMM yyyy")</p>
                 <p>@item.Uur</p>
-                <a class="btn-primary btn" asp-action="Ticketselect" asp-controller="Ticket" asp-route-id="@item.ThuisploegId">Koop tickets</a>
+                <a class="btn-primary btn" asp-action="Ticketselect" asp-controller="Ticket" asp-route-id="@item.WedstrijdId">Koop tickets</a>
              </div>
          </div>
     }
     
 }
-
     </div>
-    
-
 </div>
 
 @section Scripts {

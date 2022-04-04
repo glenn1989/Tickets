@@ -25,7 +25,6 @@ namespace Tickets.Controllers
             _vakStadionService = vakstadionservice;
         }
 
-        [HttpGet]
         public async Task<IActionResult> Ticketselect(int id)
         {
 
@@ -37,12 +36,21 @@ namespace Tickets.Controllers
             Wedstrijd wedstrijd = await _wedstrijdService.FindById(id);
 
             var ticket = new TicketVM();
+
+            ticket.wedstrijdID = wedstrijd.WedstrijdId;
             ticket.Thuisploeg = wedstrijd.Thuisploeg.Clubnaam;
             ticket.Uitploeg = wedstrijd.Uitploeg.Clubnaam;
-
             ticket.Vak = new SelectList(await _vakService.GetAll(), "VakId", "VakNaam", ticket.Vak);
-            
+
             return View(ticket);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> OrderCheck(TicketVM entityVM, int id)
+        {
+
+            return View();
+        }
+        
     }
 }

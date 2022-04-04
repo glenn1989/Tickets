@@ -19,7 +19,9 @@ namespace Tickets.ViewModel
         [Display(Name ="Vak Selecteren")]
         public IEnumerable<SelectListItem>? Vak { get; set; }
 
-        public double Prijs { get; set; }
+        public int VakId { get; set; }
+
+        public decimal Prijs { get; set; }
 
     }
 }
