@@ -22,6 +22,30 @@ namespace Tickets.AutoMapper
                 .ForMember(dest => dest.Uitploeg, opts => opts
                 .MapFrom(src => src.Uitploeg.Clubnaam));
 
+            CreateMap<Wedstrijd, WedstrijdlistVM>()
+                .ForMember(dest => dest.Thuisploeg,
+                opts => opts
+                .MapFrom(src => src.Thuisploeg.Clubnaam))
+                .ForMember(dest => dest.Uitploeg,
+                opts => opts
+                .MapFrom(src => src.Uitploeg.Clubnaam))
+                .ForMember(dest => dest.ThuisploegId,
+                opts => opts
+                .MapFrom(src => src.ThuisploegId))
+                .ForMember(dest => dest.UitploegId,
+                opts => opts
+                .MapFrom(src => src.UitploegId))
+                .ForMember(dest => dest.Datum,
+                opts => opts
+                .MapFrom(src => src.Datum))
+                .ForMember(dest => dest.Uur,
+                opts => opts
+                .MapFrom(src => src.Uur))
+                .ForMember(dest => dest.WedstrijdId,
+                opts => opts
+                .MapFrom(src => src.WedstrijdId));
+
+
             CreateMap<Ticket, TicketVM>()
                 .ForMember(dest => dest.Thuisploeg, opts => opts
                 .MapFrom(src => src.Wedstrijd.Thuisploeg.Clubnaam))

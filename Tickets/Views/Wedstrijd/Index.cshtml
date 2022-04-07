@@ -23,12 +23,12 @@
 
 
      <div class="container-fluid">
-@if(@Model.WedstrijdenList.Count > 0){
+@if(@Model.wedstrijdlistVMs.Count() > 0){
 
-    @foreach(var item in Model.WedstrijdenList)
+    @foreach(var item in Model.wedstrijdlistVMs)
     {
         <div class="card text-center contentbox">
-            <h5 class="card-header">@item.Thuisploeg.Clubnaam - @item.Uitploeg.Clubnaam</h5>
+            <h5 class="card-header">@item.Thuisploeg - @item.Uitploeg</h5>
             <div class="card-body">
                 <p>@item.Datum.Value.ToString("dd MMMM yyyy")</p>
                 <p>@item.Uur</p>
@@ -39,7 +39,10 @@
     
 }
     </div>
+
 </div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

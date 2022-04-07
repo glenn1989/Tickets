@@ -27,21 +27,10 @@ namespace Tickets.Controllers
         {
             
             var list = await _wedstrijdService.GetAll();
+            List<WedstrijdlistVM> wedstrijdlistVMs = _mapper.Map<List<WedstrijdlistVM>>(list);
             WedstrijdVM wedstrijdvm = new WedstrijdVM();
-
             wedstrijdvm.Club = new SelectList(await _clubService.GetAll(), "Stamnummer", "Clubnaam", wedstrijdvm.Club);
-
-            var wedlist = new List<Wedstrijd>();
-
-            foreach(var item in list)
-            {
-                wedlist.Add(item);
-            }
-
-            wedstrijdvm.WedstrijdenList = wedlist;
-            
-           
-           
+            wedstrijdvm.wedstrijdlistVMs = wedstrijdlistVMs;
             return View(wedstrijdvm);
         }
 
@@ -50,23 +39,11 @@ namespace Tickets.Controllers
         public async Task<IActionResult> Index(WedstrijdVM wVM)
         {
 
-
             var sel = Convert.ToInt32(wVM.Thuisploeg);
-            var wedList = new List<Wedstrijd>();
-            var list = await _wedstrijdService.GetAll();
+            var list = await _wedstrijdService.FindThuisWedstrijd(sel);
+            List<WedstrijdlistVM> wedstrijdlistVMs = _mapper.Map<List<WedstrijdlistVM>>(list);
+            wVM.wedstrijdlistVMs = wedstrijdlistVMs;
             wVM.Club = new SelectList(await _clubService.GetAll(), "Stamnummer", "Clubnaam", wVM.Club);
-
-
-            foreach (var item in list)
-            {
-                if (item.Thuisploeg.Stamnummer == sel)
-                {
-
-                    wedList.Add(item);
-                }
-            }
-
-            wVM.WedstrijdenList = wedList;
 
             return View(wVM);
         }

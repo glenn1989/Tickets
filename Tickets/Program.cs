@@ -7,6 +7,7 @@ using Tickets.Repository.Interfaces;
 using Tickets.Services;
 using Tickets.Services.Interfaces;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +23,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Dependency Injection classes
+
 builder.Services.AddTransient<Iservices<Wedstrijd>, WedstrijdServices>();
 builder.Services.AddTransient<IDAO<Club>, ClubsDAO>();
 
@@ -33,6 +35,14 @@ builder.Services.AddTransient<IDAO<Vak>, VakDAO>();
 
 builder.Services.AddTransient<Iservices<VakStadion>, VakStadionServices>();
 builder.Services.AddTransient<IDAO<VakStadion>, VakStadionDAO>();
+
+builder.Services.AddSession(options =>
+{
+
+    options.Cookie.Name = "be.VIVES.Session";
+
+    options.IdleTimeout = TimeSpan.FromMinutes(1);
+});
 
 var app = builder.Build();
 

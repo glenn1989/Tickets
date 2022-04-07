@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Tickets.Domain.Entities;
+using Tickets.Extensions;
 using Tickets.Services.Interfaces;
 using Tickets.ViewModel;
 
@@ -48,8 +49,40 @@ namespace Tickets.Controllers
         [HttpPost]
         public async Task<IActionResult> OrderCheck(TicketVM entityVM, int id)
         {
+            if(id == null)
+            {
+                return NotFound();
+            }
 
-            return View();
+            Wedstrijd wedstrijd = await _wedstrijdService.FindById(id);
+            VakStadion vakStadion = await _vakStadionService.FindById(entityVM.VakId);
+
+            CartVM item = new CartVM
+            {
+                WedstrijdId = id,
+                AantalTickets = entityVM.aantalTickets,
+                Prijs = vakStadion.Prijs,
+                Aankoopdatum = DateTime.Now
+            };
+
+
+            ShoppingCartVM? shopping;
+
+            if (HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart") != null)
+            {
+                shopping = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+            }
+            else
+            {
+                shopping = new ShoppingCartVM();
+                shopping.Cart = new List<CartVM>();
+            }
+            shopping.Cart.Add(item);
+
+            HttpContext.Session.SetObject("ShoppingCart", shopping);
+
+
+            return RedirectToAction("OrderCheck","ShoppingCart");
         }
         
     }
