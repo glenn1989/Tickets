@@ -16,6 +16,12 @@ namespace Tickets.Services
         {
             _VakDAO = vakDAO;
         }
+
+        public Task Add(Vak entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Vak> FindById(int id)
         {
             throw new NotImplementedException();

@@ -19,6 +19,12 @@ namespace Tickets.Repository
         {
             _ticketsDb = new TicketsDbContext();
         }
+
+        public Task Add(Vak entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Vak> FindById(int id)
         {
             throw new NotImplementedException();

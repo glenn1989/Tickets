@@ -45,5 +45,10 @@ namespace Tickets.Repository
         {
             throw new NotImplementedException();
         }
+
+        public Task Add(Club entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

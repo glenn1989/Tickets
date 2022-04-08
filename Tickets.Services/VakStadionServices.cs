@@ -20,6 +20,11 @@ namespace Tickets.Services
             _VakStadionDAO = vakstadion;
         }
 
+        public Task Add(VakStadion entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<VakStadion> FindById(int id)
         {
             return await _VakStadionDAO.FindById(id);

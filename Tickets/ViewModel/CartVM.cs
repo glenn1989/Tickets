@@ -1,4 +1,6 @@
-﻿namespace Tickets.ViewModel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Tickets.ViewModel
 {
 
     public class ShoppingCartVM
@@ -11,12 +13,14 @@
         public int? ThuisploegId { get; set; }
         public int? UitploegId { get; set; }
         public string? Uitploeg { get; set; }
+        [Display(Name ="Aantal tickets")]
         public int AantalTickets { get; set; }
         public string? Stadion { get; set; }
-        public decimal? Prijs { get; set; }
+        public float? Prijs { get; set; }
         public string? Vak { get; set; }
         public int? VakId { get; set; }
         public System.DateTime Aankoopdatum { get; set; }
+        [Display(Name ="Wedstrijd")]
         public int? WedstrijdId { get; set; }
     }
 }

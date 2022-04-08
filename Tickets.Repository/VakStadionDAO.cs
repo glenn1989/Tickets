@@ -19,6 +19,11 @@ namespace Tickets.Repository
             _ticketDb = new TicketsDbContext();
         }
 
+        public Task Add(VakStadion entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<VakStadion> FindById(int id)
         {
             try

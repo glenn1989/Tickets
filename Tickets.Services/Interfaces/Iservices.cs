@@ -13,5 +13,6 @@ namespace Tickets.Services.Interfaces
         Task<IEnumerable<T>> FindThuisWedstrijd(int id);
 
         Task<T> FindById(int id);
+        Task Add(T entity);
     }
 }

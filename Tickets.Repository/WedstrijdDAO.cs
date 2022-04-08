@@ -65,5 +65,10 @@ namespace Tickets.Repository
                 throw new Exception("error DAO");
             }
         }
+
+        public Task Add(Wedstrijd entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

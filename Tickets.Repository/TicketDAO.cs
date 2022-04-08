@@ -10,6 +10,11 @@ namespace Tickets.Repository
 {
     public class TicketDAO : IDAO<Ticket>
     {
+        public Task Add(Ticket entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Ticket> FindById(int id)
         {
             throw new NotImplementedException();

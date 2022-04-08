@@ -33,6 +33,9 @@ namespace Tickets.Services
             return await _wedstrijdDAO.FindById(id);
         }
 
-        
+        public Task Add(Wedstrijd entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
