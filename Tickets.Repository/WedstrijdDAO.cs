@@ -51,7 +51,7 @@ namespace Tickets.Repository
             }
         }
 
-        public async Task<Wedstrijd> FindById(int id)
+        public async Task<Wedstrijd> FindById(int? id, int? id2 = 0)
         {
             try
             {

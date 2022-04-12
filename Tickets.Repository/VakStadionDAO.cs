@@ -24,11 +24,11 @@ namespace Tickets.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<VakStadion> FindById(int id)
+        public async Task<VakStadion> FindById(int? id,int? id2)
         {
             try
             {
-                return await _ticketDb.VakStadions.Include(a => a.Vak).Include(a => a.Stadion).Where(a => a.VakId == id).FirstOrDefaultAsync();
+                return await _ticketDb.VakStadions.Include(a => a.Vak).Include(a => a.Stadion).Where(a => a.VakId == id).Where(a => a.StadionId == id2).FirstOrDefaultAsync();
             }
             catch(Exception ex)
             {

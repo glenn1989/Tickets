@@ -25,9 +25,9 @@ namespace Tickets.Services
             throw new NotImplementedException();
         }
 
-        public async Task<VakStadion> FindById(int id)
+        public async Task<VakStadion> FindById(int? id,int? id2)
         {
-            return await _VakStadionDAO.FindById(id);
+            return await _VakStadionDAO.FindById(id,id2);
         }
 
         public Task<IEnumerable<VakStadion>> FindThuisWedstrijd(int id)

@@ -23,5 +23,7 @@ namespace Tickets.ViewModel
 
         public decimal Prijs { get; set; }
 
+        public int? StadionId { get; set; }
+
     }
 }

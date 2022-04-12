@@ -25,7 +25,7 @@ namespace Tickets.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Vak> FindById(int id)
+        public Task<Vak> FindById(int? id, int? id2 = 0)
         {
             throw new NotImplementedException();
         }

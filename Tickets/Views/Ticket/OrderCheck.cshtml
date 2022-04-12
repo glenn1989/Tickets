@@ -12,7 +12,7 @@
 @if (Model != null)
 {
 
-    <form asp-action="Payment">
+    <form asp-action="Validate">
         <table>
             <tr>
                 <th>
@@ -38,6 +38,10 @@
 
                 <tr>
                     @Html.HiddenFor(m => Model.Cart[i].WedstrijdId)
+                    @Html.HiddenFor(m => Model.Cart[i].Aankoopdatum)
+                    @Html.HiddenFor(m => Model.Cart[i].VakId)
+                    @Html.HiddenFor(m => Model.Cart[i].StadionId)
+                    
                     <td>
                         <p>@Model.Cart[i].Thuisploeg - @Model.Cart[i].Uitploeg</p>
                     </td>

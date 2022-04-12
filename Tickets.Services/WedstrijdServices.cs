@@ -28,9 +28,9 @@ namespace Tickets.Services
             return await _wedstrijdDAO.FindThuisWedstrijd(id);
         }
 
-        public async Task<Wedstrijd> FindById(int id)
+        public async Task<Wedstrijd> FindById(int? id, int? id2=0)
         {
-            return await _wedstrijdDAO.FindById(id);
+            return await _wedstrijdDAO.FindById(id,id2);
         }
 
         public Task Add(Wedstrijd entity)

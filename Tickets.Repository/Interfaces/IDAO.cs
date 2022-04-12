@@ -10,7 +10,7 @@ namespace Tickets.Repository.Interfaces
     {
         Task<IEnumerable<T>> GetAll();
         Task<IEnumerable<T>> FindThuisWedstrijd(int id);
-        Task<T> FindById(int id);
+        Task<T> FindById(int? id, int? id2);
 
         Task Add(T entity);
     }

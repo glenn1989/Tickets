@@ -22,10 +22,11 @@ namespace Tickets.Services
             await _aankopenDAO.Add(entity);
         }
 
-        public async Task<Aankopen> FindById(int id)
+        public async Task<Aankopen> FindById(int? id, int? id2 = 0)
         {
-            return await _aankopenDAO.FindById(id);
+            return await _aankopenDAO.FindById(id,id2);
         }
+
 
         public Task<IEnumerable<Aankopen>> FindThuisWedstrijd(int id)
         {

@@ -17,7 +17,7 @@ namespace Tickets.Controllers
             _clubService = clubservice;
             _wedstrijdService = wedstrijdservice;
         }
-        public async Task<IActionResult> Clubpage(int id)
+        public async Task<IActionResult> Clubpage(int id,int id2)
         {
 
             if(id == null)
@@ -25,7 +25,7 @@ namespace Tickets.Controllers
                 return NotFound();
             }
 
-            Club club = await _clubService.FindById(id);
+            Club club = await _clubService.FindById(id,id2);
 
             ClubVM clubvm = _mapper.Map<ClubVM>(club);
 

@@ -39,7 +39,7 @@ namespace Tickets.Domain.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.\\SQL19_VIVES; Database=Tickets; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.\\SQL19_VIVES; Database=Tickets; Trusted_Connection=True; MultipleActiveResultSets=true;");
             }
         }
 
@@ -51,9 +51,7 @@ namespace Tickets.Domain.Data
 
                 entity.ToTable("Aankopen");
 
-                entity.Property(e => e.AankoopId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("AankoopID");
+                entity.Property(e => e.AankoopId).HasColumnName("AankoopID");
 
                 entity.Property(e => e.Aankoopdatum).HasColumnType("date");
 
@@ -252,9 +250,7 @@ namespace Tickets.Domain.Data
             {
                 entity.ToTable("Ticket");
 
-                entity.Property(e => e.TicketId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("TicketID");
+                entity.Property(e => e.TicketId).HasColumnName("TicketID");
 
                 entity.Property(e => e.AankoopId).HasColumnName("AankoopID");
 
@@ -300,6 +296,8 @@ namespace Tickets.Domain.Data
                 entity.Property(e => e.VakId).HasColumnName("VakID");
 
                 entity.Property(e => e.StadionId).HasColumnName("StadionID");
+
+                entity.Property(e => e.Prijs).HasColumnType("decimal(18, 0)");
 
                 entity.HasOne(d => d.Stadion)
                     .WithMany(p => p.VakStadions)

@@ -22,7 +22,7 @@ namespace Tickets.Services
             throw new NotImplementedException();
         }
 
-        public Task<Vak> FindById(int id)
+        public Task<Vak> FindById(int? id, int? id2)
         {
             throw new NotImplementedException();
         }

@@ -10,16 +10,16 @@ using Tickets.Repository.Interfaces;
 
 namespace Tickets.Repository
 {
-    public class TicketDAO : IDAO<Ticket>
+    public class PlaatsDAO: IDAO<Plaat>
     {
-
         private readonly TicketsDbContext _ticketsDb;
 
-        public TicketDAO()
+        public PlaatsDAO()
         {
             _ticketsDb = new TicketsDbContext();
         }
-        public async Task Add(Ticket entity)
+
+        public async Task Add(Plaat entity)
         {
             _ticketsDb.Entry(entity).State = EntityState.Added;
             try
@@ -30,28 +30,36 @@ namespace Tickets.Repository
             {
                 throw new Exception("error in DAO aankopen");
             }
+
         }
 
-        public async Task<Ticket> FindById(int? id, int? id2 = 0)
+        public async Task<Plaat> FindById(int? id, int? id2)
         {
             try
             {
-                return await _ticketsDb.Tickets.Where(a => a.TicketId == id).FirstOrDefaultAsync();
+                return await _ticketsDb.Plaats.Where(a => a.VakId == id).Where(a => a.StadionId == id2).FirstOrDefaultAsync(); 
             }
             catch (Exception ex)
             {
-                throw new Exception("error in dao");
+                throw new Exception("fout in dao");
             }
         }
 
-        public Task<IEnumerable<Ticket>> FindThuisWedstrijd(int id)
+        public Task<IEnumerable<Plaat>> FindThuisWedstrijd(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Ticket>> GetAll()
+        public async Task<IEnumerable<Plaat>> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _ticketsDb.Plaats.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in PlaatsDAO");
+            }
         }
     }
 }

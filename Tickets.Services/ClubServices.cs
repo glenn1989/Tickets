@@ -21,9 +21,9 @@ namespace Tickets.Services
             return await _clubDAO.GetAll();
         }
 
-        public async Task<Club> FindById(int id)
+        public async Task<Club> FindById(int? id, int? id2=0)
         {
-            return await _clubDAO.FindById(id);
+            return await _clubDAO.FindById(id,id2);
         }
         public async Task<IEnumerable<Club>> FindThuisWedstrijd(int id)
         {

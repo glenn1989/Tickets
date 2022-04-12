@@ -36,6 +36,15 @@ builder.Services.AddTransient<IDAO<Vak>, VakDAO>();
 builder.Services.AddTransient<Iservices<VakStadion>, VakStadionServices>();
 builder.Services.AddTransient<IDAO<VakStadion>, VakStadionDAO>();
 
+builder.Services.AddTransient<Iservices<Aankopen>, AankopenServices>();
+builder.Services.AddTransient<IDAO<Aankopen>, AankopenDAO>();
+
+builder.Services.AddTransient<Iservices<Ticket>, TicketServices>();
+builder.Services.AddTransient<IDAO<Ticket>, TicketDAO>();
+
+builder.Services.AddTransient<Iservices<Plaat>, PlaatsServices>();
+builder.Services.AddTransient<IDAO<Plaat>, PlaatsDAO>();
+
 builder.Services.AddSession(options =>
 {
 

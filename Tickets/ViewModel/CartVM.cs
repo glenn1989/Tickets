@@ -16,6 +16,8 @@ namespace Tickets.ViewModel
         [Display(Name ="Aantal tickets")]
         public int AantalTickets { get; set; }
         public string? Stadion { get; set; }
+
+        public int? StadionId { get; set; }
         public float? Prijs { get; set; }
         public string? Vak { get; set; }
         public int? VakId { get; set; }

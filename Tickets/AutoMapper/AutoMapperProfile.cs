@@ -56,6 +56,10 @@ namespace Tickets.AutoMapper
                 .ForMember(dest => dest.Prijs, opts => opts
                 .MapFrom(src => src.Plaats.VakStadion.Prijs));
 
+            CreateMap<OrderVM, Aankopen>()
+                .ForMember(dest => dest.ClientId, opts => opts
+                .MapFrom(src => src.UserID));
+
             
         }
     }

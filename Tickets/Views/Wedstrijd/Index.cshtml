@@ -30,8 +30,9 @@
         <div class="card text-center contentbox">
             <h5 class="card-header">@item.Thuisploeg - @item.Uitploeg</h5>
             <div class="card-body">
-                <p>@item.Datum.Value.ToString("dd MMMM yyyy")</p>
-                <p>@item.Uur</p>
+                
+                <p><span class="bi bi-calendar-week">@item.Datum.Value.ToString("dd MMMM yyyy")</span></p>
+                <p><span class="bi bi-clock">@item.Uur</span></p>
                 <a class="btn-primary btn" asp-action="Ticketselect" asp-controller="Ticket" asp-route-id="@item.WedstrijdId">Koop tickets</a>
              </div>
          </div>

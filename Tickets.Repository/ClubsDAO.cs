@@ -29,7 +29,7 @@ namespace Tickets.Repository
             }
         }
 
-        public async Task<Club> FindById(int id)
+        public async Task<Club> FindById(int? id, int? id2 = 0)
         {
             try
             {

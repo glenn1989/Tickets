@@ -19,7 +19,7 @@ namespace Tickets.Repository
             _ticketsDb = new TicketsDbContext();
         }
 
-        public async Task<Aankopen> FindById(int id)
+        public async Task<Aankopen> FindById(int? id, int? id2=0)
         {
             try
             {
@@ -62,9 +62,6 @@ namespace Tickets.Repository
             }
         }
 
-        public Task Add(Aankopen entity)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
