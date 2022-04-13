@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Tickets.Domain.Entities;
@@ -70,8 +71,6 @@ namespace Tickets.Domain.Data
                 entity.HasKey(e => e.Abonnementsnummer);
 
                 entity.ToTable("Abonnement");
-
-                entity.Property(e => e.Abonnementsnummer).ValueGeneratedNever();
 
                 entity.Property(e => e.AankoopId).HasColumnName("AankoopID");
 
@@ -222,7 +221,6 @@ namespace Tickets.Domain.Data
                 entity.HasKey(e => e.PlaatsId);
 
                 entity.Property(e => e.PlaatsId)
-                    .ValueGeneratedNever()
                     .HasColumnName("PlaatsID");
 
                 entity.Property(e => e.StadionId).HasColumnName("StadionID");

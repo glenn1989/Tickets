@@ -20,7 +20,7 @@ namespace Tickets.Services
 
         public async Task Add(Plaat entity)
         {
-            await _plaatsDAO.Add(entity);
+             await _plaatsDAO.Add(entity);
         }
 
         public async Task<Plaat> FindById(int? id, int? id2)

@@ -38,6 +38,34 @@ namespace Tickets.Controllers
             
         }
 
+        private List<Plaat> GetPlaats(IEnumerable<Plaat> plaatsen, int? VakId, int? StadionId)
+        {
+            
+            List<Plaat> p = new List<Plaat>();
+
+            foreach (var i in plaatsen)
+            {
+                if (i.StadionId == StadionId && i.VakId == VakId)
+                {
+                    p.Add(i);
+                }
+            }
+
+            return p;
+        }
+
+        private List<Plaat> GetId(IEnumerable<Plaat> numerable)
+        {
+            List <Plaat> p = new List<Plaat>();
+
+            foreach(var i in numerable)
+            {
+                p.Add(i);
+            }
+
+            return p;
+        }
+
         public async Task<IActionResult> Ticketselect(int id,int id2)
         {
 
@@ -121,7 +149,7 @@ namespace Tickets.Controllers
             }
             ShoppingCartVM? cartList
               = HttpContext.Session
-              .GetObject<ShoppingCartVM>("ShoppingCart");
+              .GetObject<ShoppingCartVM>("OrderCheck");
 
             CartVM? itemToRemove =
                 cartList?.Cart?.FirstOrDefault(r => r.WedstrijdId == id);
@@ -130,7 +158,7 @@ namespace Tickets.Controllers
             if (itemToRemove != null)
             {
                 cartList?.Cart?.Remove(itemToRemove);
-                HttpContext.Session.SetObject("ShoppingCart", cartList);
+                HttpContext.Session.SetObject("OrderCheck", cartList);
 
             }
 
@@ -160,51 +188,59 @@ namespace Tickets.Controllers
                     plaats = new Plaat();
                     aankoop.ClientId = userID;
                     aankoop.Aankoopdatum = item.Aankoopdatum;
-                    _aankopenService.Add(aankoop);
+                    await _aankopenService.Add(aankoop);
 
 
                     var aantalTicket = item.AantalTickets;
+
                     VakStadion stadionvak = await _vakStadionService.FindById(item.VakId, item.StadionId);
+
                     IEnumerable<Plaat> plaatsen = await _plaatsService.GetAll();
-                    List <Plaat> p = new List<Plaat>();
+
                     var capaciteit = stadionvak.Capaciteit;
+                    
 
-                    foreach (var i in plaatsen)
+                    var aantalBezet = GetPlaats(plaatsen, item.VakId, item.StadionId).Count();
+                   
+
+                    //int j = -1;
+
+                    for (int i = 0; i < aantalTicket && aantalBezet <= capaciteit; i++)
                     {
-                        if(i.StadionId == item.StadionId && i.VakId == item.VakId)
-                        {
-                            p.Add(i);
-                        }
-                    }
-
-                    var aantalBezet = p.Count();
-                    int j = 0;
-
-                    while(j < aantalTicket+1 && aantalBezet < capaciteit+1)
-                    {  
                         if (aantalBezet == capaciteit)
                         {
                             TempData["status"] = "Vak is volzet.";
                             return RedirectToAction("OrderCheck", "Ticket");
-                        } 
-                        else
-                        {
+                        }
+
+                            
+                            plaats.Plaatsnummer = ++aantalBezet;
                             plaats.StadionId = item.StadionId;
                             plaats.VakId = item.VakId;
-                            _plaatsService.Add(plaats);
-                            j++;
+                            await _plaatsService.Add(plaats);
+
                         }
                     }
 
-                    
- 
+                    //while(j <= aantalTicket && aantalBezet <= capaciteit)
+                    //{
+                        
+                        
+                    //    if (aantalBezet == capaciteit)
+                    //    {
+                    //        TempData["status"] = "Vak is volzet.";
+                    //        return RedirectToAction("OrderCheck", "Ticket");
+                    //    } 
+                            
+                    //        plaats.Plaatsnummer = (int?)++aantalBezet;
+                    //        plaats.StadionId = item.StadionId;
+                    //        plaats.VakId = item.VakId;
+                    //        _plaatsService.Add(plaats);
+                    //        ++j;
 
+                    //}
 
-
-                    
-
-
-                }
+                
             } 
             catch (DataException ex)
             {
@@ -219,4 +255,5 @@ namespace Tickets.Controllers
         }
         
     }
+
 }
