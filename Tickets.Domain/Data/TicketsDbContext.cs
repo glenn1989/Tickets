@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Tickets.Domain.Entities;
@@ -220,8 +219,7 @@ namespace Tickets.Domain.Data
             {
                 entity.HasKey(e => e.PlaatsId);
 
-                entity.Property(e => e.PlaatsId)
-                    .HasColumnName("PlaatsID");
+                entity.Property(e => e.PlaatsId).HasColumnName("PlaatsID");
 
                 entity.Property(e => e.StadionId).HasColumnName("StadionID");
 
