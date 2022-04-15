@@ -39,3 +39,13 @@ footer{
 .contentbox{
     margin:5px 0 5px 0;
 }
+
+.logo {
+    width: 50px;
+    margin:auto;
+    margin-top: 2px;
+}
+
+.box{
+    margin:10px 0;
+}
