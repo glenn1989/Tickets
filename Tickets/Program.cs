@@ -10,10 +10,14 @@ using Tickets.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection"); ;
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString)); ;
+
+
+
+// Add services to the container.
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -44,6 +48,9 @@ builder.Services.AddTransient<IDAO<Ticket>, TicketDAO>();
 
 builder.Services.AddTransient<Iservices<Plaat>, PlaatsServices>();
 builder.Services.AddTransient<IDAO<Plaat>, PlaatsDAO>();
+
+builder.Services.AddTransient<Iservices<Abonnement>, AbonnementServices>();
+builder.Services.AddTransient<IDAO<Abonnement>, AbonnementDAO>();
 
 builder.Services.AddSession(options =>
 {

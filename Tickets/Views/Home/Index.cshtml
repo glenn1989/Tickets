@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <h5>@item.Clubnaam</h5>
                     
-                    <a asp-controller="Abonnement" asp-action="Select">Koop hier uw abonnement voor @item.Clubnaam</a>
+                    <a asp-controller="Abonnement" asp-action="Index" asp-route-id="@item.Stamnummer">Koop hier uw abonnement voor @item.Clubnaam</a>
                 </div>
             </div>
 
